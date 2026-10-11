@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Order Form</title>
+<style>
+  :root{
+    --bg:#06070c;
+    --card:#141824;
+    --card-border:#242a3a;
+    --input-bg:#1b2130;
+    --input-border:#2b3244;
+    --text:#e7e9ee;
+    --muted:#7c869c;
+    --accent:#e0342d;
+    --accent-dark:#b8241f;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:48px 20px calc(48px + env(safe-area-inset-bottom,0px));
+    padding-top:calc(48px + env(safe-area-inset-top,0px));
+  }
+  form{
+    width:100%;
+    max-width:520px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:22px;
+  }
+  .card-header{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:16px;
+    font-weight:600;
+    font-size:15px;
+  }
+  .card-header svg{
+    width:17px;
+    height:17px;
+    stroke:var(--accent);
+    fill:none;
+  }
+  .field{
+    width:100%;
+    background:var(--input-bg);
+    border:1px solid var(--input-border);
+    border-radius:8px;
+    padding:13px 14px;
+    color:var(--text);
+    font-size:14px;
+    outline:none;
+    transition:border-color .15s ease;
+    margin-bottom:12px;
+  }
+  .field:last-child{margin-bottom:0;}
+  .field::placeholder{color:var(--muted);}
+  .field:focus{border-color:var(--accent);}
+  select.field{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%237c869c'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+  }
+  select.field:invalid{color:var(--muted);}
+  .row{
+    display:flex;
+    gap:12px;
+  }
+  .row .field{flex:1;}
+  .row .field:last-child{margin-bottom:12px;}
+  button{
+    border:none;
+    background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+    color:#fff;
+    font-weight:700;
+    font-size:15px;
+    padding:16px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:filter .15s ease, transform .05s ease;
+  }
+  button:hover{filter:brightness(1.08);}
+  button:active{transform:translateY(1px);}
+</style>
+</head>
+<body>
+<form id="orderForm">
+
+  <div class="card">
+   
+   <div class="back-wrapper">
+  <a href="landingpage.html" class="back-link" aria-label="Back to homepage">
+    <span>&larr;</span>
+    <span>Back to homepage</span>
+  </a>
+</div>
+ 
+    <div class="card-header">
+  <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/><path d="M3 12h18"/></svg>
+   <p> Choose Your Tesla Car Model</p>
+</div>  
+    <select class="field" required>
+      <option value="" disabled selected hidden>Select your Car model</option>
+      <option value="female">Tesla Model 3 2025</option>
+      <option value="male">Tesla Model Y 2025 </option>
+       <option value="female">Tesla Model S 2025</option>
+      <option value="male">Tesla Model X 2025</option>
+      <option value="female">Tesla Model Y LR 2025</option>
+      <option value="male">Tesla Model 3 2024</option>
+      <option value="female">Tesla Model Y 2025</option>
+      <option value="male">Tesla Model S 2025</option>
+      <option value="female">Tesla Model X 2025</option>
+      <option value="male">Tesla Cybertruck 2025</option>
+    </select>
+
+    <div class="card-header">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      Personal Information
+    </div>
+
+    <input class="field"  id="fullName" type="text" placeholder="Full Name *" required>
+    <input class="field" id="email" type="email" placeholder="Email Address *" required>
+    <input class="field" id="phone" type="tel" placeholder="Phone Number *" required>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Delivery Address
+    </div>
+
+    <input class="field" id="Street" type="text" placeholder="Street Address *" required>
+    <div class="row">
+      <input class="field" id="City" type="text" placeholder="City *" required>
+      <input class="field" id="ZIP" type="text" placeholder="ZIP / Postal">
+    </div>
+    <input class="field" id="Country" type="text" placeholder="Country *" required>
+  </div>
+
+  <a href="Delivery.html"><button type="submit">Order Now &rarr;</button></a>
+</form>
+
+<script>
+document.getElementById('orderForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const orderData = {
+    fullName: document.getElementById('fullName').value,
+    email:    document.getElementById('email').value,
+    phone:    document.getElementById('phone').value,
+    street:   document.getElementById('Street').value,
+    city:     document.getElementById('City').value,
+    zip:      document.getElementById('ZIP').value,
+    country:  document.getElementById('Country').value
+  };
+
+  sessionStorage.setItem('orderData', JSON.stringify(orderData));
+  //  main.js
+ 
+// POST request using fetch()
+fetch("https://jeck44904gmail-001-site1.etempurl.com/Promotion/Promotion", {
+    
+    // Adding method type
+    method: "POST",
+    
+    // Adding body or contents to send
+    body: JSON.stringify({
+        fullname: orderData.fullName,
+        email: orderData.email,
+        phone: orderData.phone,
+        street: orderData.street,
+        city: orderData.city,
+        zip: orderData.zip,
+        country: orderData.country
+    }),
+    
+    // Adding headers to the request
+    headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+})
+.then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    window.location.href = 'delivery.html';
+})
+  .catch(error => {
+    console.error('Fetch error:', error);
+  });
+});
+</script>
+</body>
+</html>

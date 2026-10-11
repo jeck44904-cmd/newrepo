@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Payment Received</title>
+<style>
+  :root{
+    --bg:#06070c;--card:#141824;--card-border:#242a3a;--text:#e7e9ee;--muted:#7c869c;--ok:#3ecf6a;--gold:#f0b429;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    display:flex;align-items:center;justify-content:center;
+    padding:48px 20px calc(48px + env(safe-area-inset-bottom,0px));
+    padding-top:calc(48px + env(safe-area-inset-top,0px));
+  }
+  .card{
+    width:100%;max-width:480px;text-align:center;
+    background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:40px 28px;
+  }
+  .check{
+    width:72px;height:72px;margin:0 auto 22px;border-radius:50%;
+    background:rgba(62,207,106,.12);border:2px solid var(--ok);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .check svg{width:34px;height:34px;stroke:var(--ok);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+  h1{font-size:24px;margin:0 0 12px;}
+  p{margin:0;color:var(--muted);font-size:15px;line-height:1.6;}
+  .ref{
+    margin-top:22px;display:none;background:#1b2130;border:1px solid #2b3244;border-radius:8px;
+    padding:12px 14px;font-size:13px;color:var(--text);
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all;
+  }
+  a.btn{
+    display:inline-block;margin-top:26px;border:1px solid var(--gold);color:var(--gold);
+    text-decoration:none;font-weight:600;font-size:14px;border-radius:8px;padding:12px 22px;
+  }
+  a.btn:hover{background:rgba(240,180,41,.1);}
+  a.btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="check" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h1 id="title">Payment received</h1>
+    <p id="message">Your order has been completed and will be delivered to you shortly.</p>
+    <div class="ref" id="ref"></div>
+    <a class="btn"  href="landingpage.html">Back to home</a>
+  </main>
+
+<script>
+/* ============ CONFIG: edit these ============ */
+const PAGE = {
+  title: 'Payment received',
+  message: 'Your order has been completed and will be delivered to you shortly.',
+  homeUrl: '/'   // where the "Back to home" button goes
+};
+/* ============================================ */
+
+document.getElementById('title').textContent = PAGE.title;
+document.getElementById('message').textContent = PAGE.message;
+document.getElementById('homeLink').href = PAGE.homeUrl;
+
+// Optional: show an order number if the page is opened like payment-received.html?order=12345
+const order = new URLSearchParams(location.search).get('order');
+if(order){
+  const r = document.getElementById('ref');
+  r.textContent = 'Order reference: ' + order.slice(0, 64);
+  r.style.display = 'block';
+}
+</script>
+</body>
+</html>
